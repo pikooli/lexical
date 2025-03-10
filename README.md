@@ -1,36 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+exemple from this :
+https://stackblitz.com/github/facebook/lexical/tree/main/examples/react-rich?embed=1&file=src/App.tsx&terminalHeight=0&ctl=1&showSidebar=0&devtoolsheight=0&view=preview
 
-## Getting Started
+Signature with image
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div style=\"font-family: Calibri, sans-serif; font-size: 11pt; background-color: white; color: #212121; line-height: 1.4;\">    <p style=\"margin: 0;\">      <strong>        Damien Hanly      </strong>    </p>    <p style=\"margin: 0; color: #3a3a3a;\">Senior Partner & Co-Founder</p>    <p style=\"margin: 0;\">      <img        src=\"https://email-signature-thumbnails.s3.us-east-2.amazonaws.com/Screenshot+2025-02-12+at+5.45.38%E2%80%AFPM.png\"        alt=\"Signature Image\"        style=\"width: 150.5pt; height: 50.74pt; cursor: pointer; display: block;\"      />    </p>    <p style=\"margin: 0;\">      E:&nbsp;      <a        href=\"mailto:zachary.zanghi@rosefinchinvestments.com\"        title=\"Email Zachary Zanghi\"        style=\"color: #467886; text-decoration: none;\"      >        damien.hanly@rosefinchinvestments.com      </a>    </p>    <p style=\"margin: 0;\">      W:&nbsp;      <a        href=\"http://www.rosefinchinvestments.com/\"        target=\"_blank\"        rel=\"noopener noreferrer\"        title=\"Visit Rose Finch Investments\"        style=\"color: #467886; text-decoration: none;\"      >        www.rosefinchinvestments.com      </a>    </p>    <p style=\"margin: 0;\">T: +1 917 554 3546</p>    <p style=\"margin: 0;\">      A: 1330 Avenue of the Americas, 23<sup>rd</sup> Floor, New York, NY, 10019    </p>    <p style=\"margin: 0;\">      <a        href=\"https://outlook.office.com/bookwithme/user/951ce761f641445e885a6de5a5afc577@rosefinchinvestments.com?anonymous&amp;ep=bwmEmailSignature\"        target=\"_blank\"        rel=\"noopener noreferrer\"        style=\"color: #0078d4; text-decoration: none;\"        title=\"Book time to meet with me\"      >        <img          src=\"https://email-signature-thumbnails.s3.us-east-2.amazonaws.com/CalendarPerson20px.png\"          alt=\"Calendar Icon\"          style=\"width: 15pt; height: 15pt; vertical-align: middle; margin-right: 4px;\"        />        Book time to meet with me      </a>    </p>  </div>
+```
