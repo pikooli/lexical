@@ -18,6 +18,10 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from 'lexical'
+import {
+  INSERT_UNORDERED_LIST_COMMAND,
+  INSERT_ORDERED_LIST_COMMAND,
+} from '@lexical/list'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   IconArrowBackUp,
@@ -172,7 +176,21 @@ export default function ToolbarPlugin() {
         }}
       >
         <IconAlignJustified />
-      </button>{' '}
+      </button>
+      <button
+        onClick={() => {
+          editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
+        }}
+      >
+        Bullet List
+      </button>
+      <button
+        onClick={() => {
+          editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
+        }}
+      >
+        Numbered List
+      </button>
     </div>
   )
 }

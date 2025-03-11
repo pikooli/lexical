@@ -5,20 +5,21 @@ import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $getRoot, $insertNodes, ParagraphNode, TextNode } from 'lexical'
 import { constructImportMap } from '@/app/constructImportMap'
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import theme from '@/app/exampleTheme'
 import ToolbarPlugin from '@/app/plugins/ToolbarPlugin'
 import TreeViewPlugin from '@/app/plugins/TreeViewPlugin'
 import { exportMap } from '@/app/exportMap'
-import { LinkNode } from '@lexical/link'
+import { AutoLinkNode, LinkNode } from '@lexical/link'
+import LexicalAutoLinkPlugin from '@/app/plugins/AutoLinkPlugin'
 import { ListItemNode, ListNode } from '@lexical/list'
-import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import LinkPlugin from '@/app/plugins/LinkPlugin'
 import { CustomParagraphNode } from './nodes/customParagraphNode'
 import { InlineImageNode } from './nodes/InlineImageNode'
 import { CustomLinkNode } from './nodes/CustomLinkNode'
@@ -54,6 +55,7 @@ const editorConfig = {
     ParagraphNode,
     TextNode,
     LinkNode,
+    AutoLinkNode,
     ListItemNode,
     ListNode,
     CustomParagraphNode,
@@ -61,21 +63,22 @@ const editorConfig = {
     CustomLinkNode,
     {
       replace: ParagraphNode,
-      with: __ => {
+      with: _ => {
         return new CustomParagraphNode()
       },
     },
     {
       replace: LinkNode,
-      with: __ => {
-        return new CustomLinkNode()
+      with: node => {
+        const url = node?.getURL?.() || ''
+        return new CustomLinkNode(url)
       },
     },
   ],
   onError(error: Error) {
     throw error
   },
-  // theme: theme,
+  theme: theme,
 }
 
 function Editor() {
@@ -122,11 +125,12 @@ function Editor() {
                 ErrorBoundary={LexicalErrorBoundary}
               />
               <HistoryPlugin />
-              {/* <AutoFocusPlugin /> */}
               <OnChangePlugin onChange={onChange} />
               <ToolbarPlugin />
               <LinkPlugin />
               <TreeViewPlugin />
+              <ListPlugin />
+              <LexicalAutoLinkPlugin />
             </LexicalComposer>
           </div>
         </div>
@@ -153,6 +157,15 @@ function Editor() {
           </div>
         </div>
       </div>
+      <ul>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+      </ul>
+      <ol>
+        <li>test</li>
+        <li>test</li>
+      </ol>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import {
   ParagraphNode,
   TextNode,
 } from 'lexical'
+import { ListItemNode, ListNode } from '@lexical/list'
 
 const removeStylesExportDOM = (
   editor: LexicalEditor,
@@ -38,4 +39,6 @@ export const exportMap: DOMExportOutputMap = new Map<
 >([
   [ParagraphNode, removeStylesExportDOM],
   [TextNode, removeStylesExportDOM],
+  [ListNode, removeStylesExportDOM], // ✅ Now lists are included
+  [ListItemNode, removeStylesExportDOM], // ✅ Lis
 ])
