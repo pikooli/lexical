@@ -1,4 +1,8 @@
-import { ParagraphNode } from 'lexical'
+import {
+  ParagraphNode,
+  $applyNodeReplacement,
+  SerializedParagraphNode,
+} from 'lexical'
 import { $isInlineImageNode } from './InlineImageNode'
 
 export class CustomParagraphNode extends ParagraphNode {
@@ -8,6 +12,13 @@ export class CustomParagraphNode extends ParagraphNode {
 
   static clone(node) {
     return new CustomParagraphNode(node.__key)
+  }
+
+  static importJSON(
+    serializedNode: SerializedParagraphNode,
+  ): CustomParagraphNode {
+    const node = $applyNodeReplacement(new CustomParagraphNode())
+    return node
   }
 
   createDOM(config) {

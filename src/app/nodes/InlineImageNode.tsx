@@ -9,7 +9,10 @@ import {
   $applyNodeReplacement,
   DecoratorNode,
 } from 'lexical'
-
+import {
+  convertKebabCaseToCamelCase,
+  convertCamelCaseToKebabCase,
+} from '../utils/convertStyle'
 export interface InlineImagePayload {
   src: string
   altText: string
@@ -65,14 +68,20 @@ export class InlineImageNode extends DecoratorNode<React.ReactElement> {
     this.__altText = altText
     this.__width = width
     this.__height = height
-    this.__style = style
+    this.__style = convertKebabCaseToCamelCase(style)
   }
 
   static importJSON(
     serializedNode: SerializedInlineImageNode,
   ): InlineImageNode {
     const { src, altText, width, height, style } = serializedNode
-    return $createInlineImageNode({ src, altText, width, height, style })
+    return $createInlineImageNode({
+      src,
+      altText,
+      width,
+      height,
+      style: convertCamelCaseToKebabCase(style),
+    })
   }
 
   static importDOM(): DOMConversionMap | null {
@@ -90,7 +99,8 @@ export class InlineImageNode extends DecoratorNode<React.ReactElement> {
     img.alt = this.__altText
     if (this.__width) img.width = this.__width
     if (this.__height) img.height = this.__height
-    if (this.__style) img.style.cssText = this.__style
+    if (this.__style)
+      img.style.cssText = convertCamelCaseToKebabCase(this.__style)
     return { element: img }
   }
 
@@ -102,7 +112,7 @@ export class InlineImageNode extends DecoratorNode<React.ReactElement> {
       altText: this.__altText,
       width: this.__width,
       height: this.__height,
-      style: this.__style,
+      style: convertCamelCaseToKebabCase(this.__style),
     }
   }
 
@@ -161,7 +171,7 @@ function convertImageElement(domNode: Node): null | DOMConversionOutput {
       src,
       altText: alt,
       width,
-      style: style?.cssText,
+      style: convertCamelCaseToKebabCase(style?.cssText),
       height,
     })
     return { node }
