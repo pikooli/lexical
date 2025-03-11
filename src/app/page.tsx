@@ -21,6 +21,7 @@ import { ListItemNode, ListNode } from '@lexical/list'
 import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
 import { CustomParagraphNode } from './nodes/customParagraphNode'
 import { InlineImageNode } from './nodes/InlineImageNode'
+import { CustomLinkNode } from './nodes/CustomLinkNode'
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
 // try to recover gracefully without losing user data.
@@ -57,10 +58,17 @@ const editorConfig = {
     ListNode,
     CustomParagraphNode,
     InlineImageNode,
+    CustomLinkNode,
     {
       replace: ParagraphNode,
-      with: node => {
+      with: __ => {
         return new CustomParagraphNode()
+      },
+    },
+    {
+      replace: LinkNode,
+      with: __ => {
+        return new CustomLinkNode()
       },
     },
   ],
