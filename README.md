@@ -3,3 +3,5 @@ https://stackblitz.com/github/facebook/lexical/tree/main/examples/react-rich?emb
 
 Ressource interesting :
 https://codesandbox.io/p/devbox/lexical-inline-image-plugin-gxmkw9?file=/src/Editor.tsx:90,4
+
+Style preversation : https://github.com/facebook/lexical/issues/4651

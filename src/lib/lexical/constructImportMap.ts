@@ -1,6 +1,9 @@
 import { $isTextNode, DOMConversionMap, TextNode } from 'lexical'
 
-import { parseAllowedColor, parseAllowedFontSize } from './styleconfig'
+import {
+  parseAllowedColor,
+  parseAllowedFontSize,
+} from '@/lib/lexical/styleconfig'
 
 const getExtraStyles = (element: HTMLElement): string => {
   // Parse styles from pasted input, but only if they match exactly the
