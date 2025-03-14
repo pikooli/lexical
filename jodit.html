@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jodit Editor</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jodit/4.2.47/es2021/jodit.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jodit/4.2.47/es2021/jodit.min.js"></script>
+  </head>
+  <body>
+    <textarea id="editor"></textarea>
+    <script>
+      const editor = Jodit.make('#editor', {
+        buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol'],
+      })
+    </script>
+  </body>
+</html>
