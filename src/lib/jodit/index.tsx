@@ -3,15 +3,14 @@ import React, { useState, useRef, useMemo, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import type { IJodit } from 'jodit/esm/types/jodit'
 
-const JoditEditor = dynamic(() => import('jodit-pro-react'), {
+const JoditEditor = dynamic(() => import('jodit-react'), {
   ssr: false,
-}) as unknown as typeof import('jodit-pro-react').default
+}) as unknown as typeof import('jodit-react').default
 
 export const JoditComponent = () => {
   const editor = useRef(null)
   const [content, setContent] = useState('')
   const [escapedContent, setEscapedContent] = useState('')
-  const joditRef = useRef<IJodit>(null)
 
   const onChange = (content: string) => {
     setContent(content)
@@ -20,41 +19,28 @@ export const JoditComponent = () => {
     )
   }
 
-  useEffect(() => {
-    import('jodit-pro-react').then(mod => {
-      joditRef.current = mod.Jodit
-      mod.Jodit.modules.Dummy = function (editor: IJodit) {
-        this.insertDummyImage = function (
-          w: number,
-          h: number,
-          textcolor: string,
-          bgcolor: string,
-        ) {
-          const image = editor.createInside.element('img')
-          image.setAttribute(
-            'src',
-            'http://dummyimage.com/' +
-              w +
-              'x' +
-              h +
-              '/' +
-              (textcolor || '000') +
-              '/' +
-              (bgcolor || 'fff'),
-          )
-          editor.selection.insertNode(image)
-          editor.setEditorValue() // for syncronize value between source textarea and editor
-        }
-      }
-    })
-  }, [])
-
   const config = useMemo(
     () => ({
       readonly: false,
-      placeholder: 'Start typings...',
       toolbarAdaptive: false, // ❌ Disables toolbar auto-resizing
+      useClasses: false, // ✅ Ensures inline styles are used instead of CSS classes
+      allowTableEditing: true, // ✅ Allows table modifications
+      allowResizeTables: true, // ✅ Ensures table resizing works
       buttons: [
+        // {
+        //   icon: 'brush',
+        //   popup: editor => {
+        //     const div = editor.create.element('div')
+        //     const input = editor.create.element('input')
+        //     input.type = 'color'
+        //     input.value = '#ff0000'
+        //     input.onblur = () => {
+        //       editor.selection.applyStyle({ color: input.value })
+        //     }
+        //     div.appendChild(input)
+        //     return div
+        //   },
+        // },
         // 'source',
         // '|',
         // 'bold',
@@ -88,39 +74,30 @@ export const JoditComponent = () => {
             editor.execCommand('background', false, '#ff00ff')
           },
         },
-        // {
-        //   iconURL: 'images/dummy.png',
-        //   tooltip: 'insert Dummy Image',
-        //   exec: function (editor: IJodit) {
-        //     editor.dummy.insertDummyImage(100, 100, 'f00', '000')
-        //   },
-        // },
       ],
-      events: {
-        afterInit: function (editor) {
-          editor.dummy = new joditRef.current.modules.Dummy(editor)
-        },
-      },
     }),
     [],
   )
 
   return (
-    <div className='grid grid-cols-2 gap-4'>
-      <JoditEditor
-        ref={editor}
-        value={content}
-        config={config}
-        tabIndex={1} // tabIndex of textarea
-        onBlur={onChange}
-        onChange={newContent => {}}
-      />
-      <div className='border border-gray-300 rounded-md p-4'>
-        Content :{content}
+    <>
+      JODIT EDITOR
+      <div className='grid grid-cols-2 gap-4'>
+        <JoditEditor
+          ref={editor}
+          value={content}
+          config={config}
+          tabIndex={1} // tabIndex of textarea
+          onBlur={onChange}
+          onChange={newContent => {}}
+        />
+        <div className='border border-gray-300 rounded-md p-4'>
+          Content :{content}
+        </div>
+        <div className='border border-gray-300 rounded-md p-4'>
+          Escaped Content :{escapedContent}
+        </div>
       </div>
-      <div className='border border-gray-300 rounded-md p-4'>
-        Escaped Content :{escapedContent}
-      </div>
-    </div>
+    </>
   )
 }

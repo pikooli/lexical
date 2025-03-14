@@ -11,8 +11,6 @@
   "dependencies": {
     "@lexical/react": "^0.27.1",
     "@tabler/icons-react": "^3.31.0",
-    "jodit-pro": "^4.5.23",
-    "jodit-pro-react": "^5.2.22",
     "jodit-react": "^5.2.15",
     "jsdom": "^26.0.0",
     "lexical": "^0.27.1",

@@ -1,8 +1,9 @@
 'use client'
-import { LexicalComponent } from '@/lib/lexical'
+// import { LexicalComponent } from '@/lib/lexical'
+import { JoditComponent } from '@/lib/jodit'
 
 function Editor() {
-  return <LexicalComponent />
+  return <JoditComponent />
 }
 
 export default Editor
